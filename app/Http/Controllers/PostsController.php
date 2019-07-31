@@ -18,9 +18,9 @@ class PostsController extends Controller
         //$post = post::all();
         //$posts= DB:: select('SELECT * FROM  posts');
         //$posts = Post::orderBy('title','desc')->take(1)->get();
-        //$posts = Post::orderBy('title','desc')->get();
+          $posts = Post::orderBy('created_at','desc')->get();
 
-        $posts = Post::orderBy('title','desc')->paginate(1);
+       // $posts = Post::orderBy('title','desc')->paginate(1);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -31,7 +31,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -42,7 +42,16 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
+        $post = new post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->save();
+        return redirect('/posts')->with('success', 'Post Created');
+
     }
 
     /**
