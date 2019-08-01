@@ -12,7 +12,7 @@
           <a href="/posts" class="nav-item nav-link">Blogs</a>
       </div>
       <div class="nav navbar-nav navbar-right">
-          <a href="/posts/create" class="nav-item nav-link">Create Post</a>
+          <a href="/posts/create" class="nav-item nav-link">  CreatePost</a>
       </div>
   </div>
 </nav>
